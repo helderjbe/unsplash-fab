@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { FabButton } from "../components/FabButton";
+import { Popover } from "../components/Popover";
+import { SearchField } from "../components/SearchField";
 import "./App.css";
 
 function App() {
+  const [search, setSearch] = useState("");
+  const [showPopover, setShowPopover] = useState(false);
+
   return (
     <div>
-      <button className="floating-button">
-        <div className="button-border">GIF</div>
-      </button>
+      <Popover show={showPopover} onClose={() => setShowPopover(false)}>
+        <SearchField search={search} onChange={setSearch} />
+      </Popover>
+      <FabButton
+        isOpen={showPopover}
+        onClick={() => setShowPopover((prevShow) => !prevShow)}
+      />
     </div>
   );
 }
