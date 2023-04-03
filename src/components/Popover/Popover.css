@@ -12,7 +12,9 @@
 .popover-content {
   background-color: #ececec;
   height: 400px;
-  width: 320px;
+  min-width: 240px;
+  max-width: 460px;
+  width: 75vw;
   border-radius: 10px;
   padding: 25px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);

@@ -18,7 +18,7 @@ export function FabButton({ onClick, isOpen }: FabButtonProps) {
           />
         </div>
       ) : (
-        <div className="fab-inner fab-border">GIF</div>
+        <div className="fab-inner fab-border"></div>
       )}
     </button>
   );
