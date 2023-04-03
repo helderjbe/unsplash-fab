@@ -6,15 +6,15 @@ import { ImageGrid } from "../ImageGrid";
 import { Popover } from "../Popover";
 import { SearchField } from "../SearchField";
 
-export interface GiphyPopoverProps {
+export interface UnsplashPopoverProps {
   setSelectedImage: (image: UnsplashImage) => void;
   setShowPopover: (show: boolean) => void;
 }
 
-export function GiphyPopover({
+export function UnsplashPopover({
   setShowPopover,
   setSelectedImage,
-}: GiphyPopoverProps) {
+}: UnsplashPopoverProps) {
   const latestRequestId = useRef(0);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,16 +24,11 @@ export function GiphyPopover({
     setLoading(true);
     try {
       const response = await fetch(
-        `${UNSPLASH_API_URL}?query=${query}&per_page=12&client_id=${UNSPLASH_API_KEY}`,
-        {
-          headers: {
-            Authorization: `Client-ID ${UNSPLASH_API_KEY}`,
-          },
-        }
+        `${UNSPLASH_API_URL}?query=${query}&per_page=12&client_id=${UNSPLASH_API_KEY}`
       );
       const data = await response.json();
 
-      if (requestId === latestRequestId.current) {
+      if (data.results && requestId === latestRequestId.current) {
         setImages(data.results);
       }
     } catch (error) {

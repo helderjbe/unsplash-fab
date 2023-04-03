@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FabButton } from "../components/FabButton";
-import { GiphyPopover } from "../components/GiphyPopover";
+import { UnsplashPopover } from "../components/UnsplashPopover";
 import { SelectedImage } from "../components/SelectedImage";
 import { UnsplashImage } from "../types/unsplash";
 import "./App.css";
@@ -15,7 +15,7 @@ function App() {
     <div>
       {selectedImage && <SelectedImage image={selectedImage} />}
       {showPopover && (
-        <GiphyPopover
+        <UnsplashPopover
           setSelectedImage={setSelectedImage}
           setShowPopover={setShowPopover}
         />
