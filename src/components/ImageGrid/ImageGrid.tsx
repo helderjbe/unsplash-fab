@@ -5,9 +5,10 @@ import Masonry from "react-masonry-css";
 export interface ImageGridProps {
   isLoading: boolean;
   images: UnsplashImage[];
+  onSelect: (image: UnsplashImage) => void;
 }
 
-export function ImageGrid({ isLoading, images }: ImageGridProps) {
+export function ImageGrid({ isLoading, images, onSelect }: ImageGridProps) {
   return (
     <Masonry
       breakpointCols={2}
@@ -16,17 +17,25 @@ export function ImageGrid({ isLoading, images }: ImageGridProps) {
     >
       {isLoading
         ? [...Array(12)].map((_, index) => (
-            <div key={`skeleton ${index}`} className="image">
-              <div style={{ paddingBottom: "75%" }}></div>
-            </div>
+            <button
+              disabled
+              key={`skeleton ${index}`}
+              className="image-button"
+              style={{ width: "100%", height: "50%" }}
+            />
           ))
         : images.map((image) => (
-            <img
+            <button
               key={image.id}
-              src={image.urls.small}
-              alt={image.alt_description || "unsplash"}
-              className="image"
-            />
+              className="image-button"
+              onClick={() => onSelect(image)}
+            >
+              <img
+                src={image.urls.small}
+                alt={image.alt_description || "unsplash"}
+                className="image"
+              />
+            </button>
           ))}
     </Masonry>
   );

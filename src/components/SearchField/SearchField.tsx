@@ -17,7 +17,7 @@ export function SearchField({ onChange, search }: SearchFieldProps) {
         />
       </div>
       <input
-        type="text"
+        type="search"
         placeholder="Search pictures"
         className="search-input"
         value={search}

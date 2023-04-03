@@ -15,6 +15,9 @@ function App() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<
+    UnsplashImage | undefined
+  >();
   const [images, setImages] = useState<UnsplashImage[]>([]);
 
   const handleSearch = async (query: string, requestId: number) => {
@@ -48,11 +51,27 @@ function App() {
     debounceSearch(() => handleSearch(value, requestId), 250);
   };
 
+  const handleSelectImage = (image: UnsplashImage) => {
+    setSelectedImage(image);
+    setShowPopover(false);
+  };
+
   return (
     <div>
+      {selectedImage && (
+        <img
+          src={selectedImage.urls.regular}
+          alt={selectedImage.alt_description || "selected"}
+          className="selected-image"
+        />
+      )}
       <Popover show={showPopover} onClose={() => setShowPopover(false)}>
         <SearchField search={search} onChange={handleInputChange} />
-        <ImageGrid isLoading={loading} images={images} />
+        <ImageGrid
+          isLoading={loading}
+          images={images}
+          onSelect={handleSelectImage}
+        />
       </Popover>
       <FabButton
         isOpen={showPopover}
