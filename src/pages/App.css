@@ -5,14 +5,3 @@
 .secondary-color {
   color: #ffa082;
 }
-
-.selected-image {
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  max-width: 50vw;
-  max-height: 50vh;
-}

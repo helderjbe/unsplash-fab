@@ -14,7 +14,6 @@
   border: none;
   outline: none;
   cursor: pointer;
-  transition: background 0.3s ease-in-out;
 }
 
 .fab:hover {

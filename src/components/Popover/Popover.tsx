@@ -4,10 +4,9 @@ import "./Popover.css";
 export interface PopoverProps {
   children: React.ReactNode;
   onClose: () => void;
-  show: boolean;
 }
 
-export function Popover({ show, children, onClose }: PopoverProps) {
+export function Popover({ children, onClose }: PopoverProps) {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const popover = document.getElementById("popover");
@@ -24,14 +23,10 @@ export function Popover({ show, children, onClose }: PopoverProps) {
   }, [onClose]);
 
   return (
-    <>
-      {show && (
-        <div className="popover-background" onClick={onClose}>
-          <div className="popover-content" onClick={(e) => e.stopPropagation()}>
-            {children}
-          </div>
-        </div>
-      )}
-    </>
+    <div className="popover-background" onClick={onClose}>
+      <div className="popover-content" onClick={(e) => e.stopPropagation()}>
+        {children}
+      </div>
+    </div>
   );
 }
